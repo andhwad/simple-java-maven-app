@@ -21,6 +21,11 @@ pipeline {
                 }
             }
         }
+	stage('analyze') {
+	    steps {
+		sh 'mvn sonar:sonar -Dsonar.host.url=http://172.28.21.73:9000 -Dsonar.login=0c69904ca9679584e55313b8b8a3d04cb57cb2ab'
+	    }
+	}	
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
